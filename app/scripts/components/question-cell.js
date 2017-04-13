@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-class Contact extends React.Component {
+class Cell extends React.Component {
 
   constructor (props) {
     super(props);
@@ -18,15 +18,15 @@ class Contact extends React.Component {
 
   render () {
     return (
-      <section>
+      <td key={idx}>
         <h2>Please contact Us</h2>
         <form>
           <input type='text' onChange={this.handleChange} defaultValue='name'/>
           <input type='email' defaultValue='email'/>
           <input type='submit' value='Send'/>
         </form>
-        <Link to="/about">Learn About Us</Link>
-      </section>
+        // <Link to="/about">Learn About Us</Link>
+      </td>
     );
   }
 }

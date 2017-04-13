@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import GameView from './components/game-view.js';
 import AppRoot from './components/app_root.js';
 import About from './components/about.js';
 import Contact from './components/contact.js';
@@ -14,15 +15,27 @@ export default function app() {
     <Provider store={store}>
       <Router>
         <div>
-          <Route path="/"      component={AppRoot}/>
-          <Route exact path="/about" component={About} />
-          <Route path="/contact-us" component={Contact} />
+          <Route path="/"      component={GameView}/>
         </div>
       </Router>
     </Provider>,
     document.getElementById('app')
   )
 }
+
+
+
+
+// example category request:
+// http://jservice.io/api/category?id=18418
+
+const firstCategory = 1;
+const lastCategory = 18418;
+
+// example clue request with value and specific category:
+// http://jservice.io/api/clues?value=200&category=223
+
+
 
 
 // generating data table:
