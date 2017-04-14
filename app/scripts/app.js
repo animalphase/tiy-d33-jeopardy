@@ -8,7 +8,8 @@ import AppRoot from './components/app_root.js';
 import About from './components/about.js';
 import Contact from './components/contact.js';
 
-
+import getClues from './get-clues.js';
+import getCategory from './get-category.js';
 
 export default function app() {
   render(
@@ -36,8 +37,6 @@ const lastCategory = 18418;
 // http://jservice.io/api/clues?value=200&category=223
 
 
-
-
 // generating data table:
 
 const categoryCount = 6;
@@ -45,18 +44,33 @@ const questionValues = [200, 400, 600, 800, 1000];
 
 let questions = [];
 
+let categories = [];
+
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const initializeQuestions = () => {
-  for(let categoryColumn = 0; categoryColumn < categoryCount; categoryColumn++) {
+
+  let categoryIDs = []
+
+  for(let currentColumn = 0; currentColumn < categoryCount; currentColumn++) {
+
+    categoryIDs[currentColumn] = randomInt(firstCategory, lastCategory);
+    getCategory(categoryIDs[currentColumn]);
+
     questions.push(['😮category name here😮']);
-    questionValues.forEach( (value, i, array) => {
-      questions[categoryColumn].push([value, '💁🏻Question here💁🏻']);
-      // TODO: question model could be an object with value and text (and whatever other propery)
-    });
+
+
+    // questionValues.forEach( (value, i, array) => {
+    //   getClues(value, categoryIDs[currentColumn]);
+    //   questions[currentColumn].push([value, '💁🏻Question here💁🏻']);
+    // });
   }
+  // console.log('category IDs : ', categoryIDs);
 };
 
 initializeQuestions();
-console.log(questions);
 
 
 
