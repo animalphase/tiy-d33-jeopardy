@@ -8,16 +8,37 @@ class GameView extends React.Component {
     super(props)
   }
 
-  onHeaderClicked ({ history }) {
-    return <h1 onClick={() => history.push('/contact-us')}>Whoa!</h1>
-  }
+  classNames() {
+    var classes = ['page-wrapper']
+    if (this.props.loading === true) {
+      classes.push('loading');
+    }
+    return classes.join(' ');
+  };
 
   render () {
     return (
-      <main>
-        <section>
-          <Route render={this.onHeaderClicked} />
-        </section>
+      <main className={this.classNames()}>
+
+
+        <div className='loading-display'>
+          <h2>loading…</h2>
+        </div>
+
+
+        <div className='game-display'>
+
+          <header>
+            <h1>Question Better</h1>
+          </header>
+
+          <section className='game-board'>
+            <p>cells go here</p>
+          </section>
+
+        </div>
+
+
       </main>
     );
   }
